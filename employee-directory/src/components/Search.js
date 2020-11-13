@@ -2,13 +2,16 @@ import React, { Component } from "react";
 import EmployeeRow from "./EmployeeRow";
 import moment from "moment";
 import API from "../utils/API";
+import SearchBox from "./SearchBox";
 
 class Search extends Component {
     state = {
         users: [{}],
         order: "descend",
         filterdUsers: [{}],
-        loading: true
+        loading: true,
+        search: "",
+        sorted: false
     };
 
     async componentDidMount() {
@@ -19,15 +22,22 @@ class Search extends Component {
         .catch(err => console.log(err));
     }
 
+
+    handleInputChange = event => {
+        console.log(event.target.value)
+        this.setState({ filterdUsers: event.target.value });
+    };
+
     render() {
        
         return (
             <div>
-
+                
                 {this.state.loading || !this.state.users ? (
                     <div> loading...</div> 
                  ): ( 
                 <div>
+                     <SearchBox handleInput={this.handleInputChange}/>
                     {this.state.users.map(users => (
                         <EmployeeRow
                         key={users.dob.date}

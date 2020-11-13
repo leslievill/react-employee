@@ -10,24 +10,28 @@ function EmployeeRow(props) {
               <img src={props.img} alt={props.dob}/>
             </div>
             <div className="col-2 userName">
+            <p>
                 {props.name}
-            </div>
-            <div className="col-3 userPhone">
-                {props.phone}
-            </div>
-            <div className="col-3 userEmail">
-                {props.email}
-            </div>
-            <div className="col-2 userDob">
-                {props.dob}
-            </div>
-        </div>
-  
-    </div>
-
-
+              </p>
+          </div>
+          <div className="col-3 userPhone">
+            <p>
+              {props.phone}
+            </p>
+          </div>
+          <div className="col-3 userEmail">
+            <p>
+              {props.email}
+            </p>
+          </div>
+          <div className="col-2 userDob">
+            <p>
+              {props.dob}
+            </p>
+          </div>
+      </div>
+  </div>
+                
     )
 }
-    
-    
-export default EmployeeRow; 
+export default EmployeeRow;
