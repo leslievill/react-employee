@@ -1,20 +1,20 @@
 import React from "react";
 import "../styles/Title.css"
 
-function Titles() {
+function Title(props) {
     return (
         <div className="container">
         <div className="row">
             <div className="col-2 image">
                 Image
             </div>
-            <div className="col-2 name">
+            <div className="col-2 name" onClick={props.click}>
                 Name
             </div>
             <div className="col-3 phone">
                 Phone
             </div>
-            <div className="col-3 email">
+            <div className="col-3 email" onClick={props.click}>
                 Email
             </div>
             <div className="col-2 dob">
@@ -26,4 +26,4 @@ function Titles() {
     )
 } 
 
-export default Titles; 
+export default Title; 
