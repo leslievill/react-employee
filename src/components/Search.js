@@ -15,33 +15,24 @@ class Search extends Component {
         sorted: false
     };
 
-  
-    // componentDidMount() {
-    //     API.getEmployee()
-    //     .then(res =>  {
-    //         // console.log(res.data)
-    //         this.setState({ users: res.data.results, loading: false })
-    //     })
-    //     .catch(err => console.log(err));
-    // }
 
     handleInputChange = event => {
         let { users, search } = this.state;
         let searchEmployee = users.filter(sorted => {
             return (
-                sorted.name.first.toLowerCase().includes(search.toLowerCase()) ||
-                sorted.name.last.toLowerCase().includes(search.toLowerCase()) ||
-                sorted.email.toLowerCase().includes(search.toLowerCase()) ||
-                sorted.cell.toLowerCase().includes(search.toLowerCase()) ||
-                sorted.dob.date.toLowerCase().includes(search.toLowerCase()) 
+               sorted.name.first.toLowerCase().includes(search.toLowerCase()) ||
+               sorted.name.last.toLowerCase().includes(search.toLowerCase()) ||
+               sorted.email.toLowerCase().includes(search.toLowerCase()) ||
+               sorted.cell.toLowerCase().includes(search.toLowerCase()) ||
+               sorted.dob.date.toLowerCase().includes(search.toLowerCase()) 
+
             )
         })
-       
-             // console.log(event.target.value)
-             this.setState({ sorted: true })
-             this.setState({ search: event.target.value });
-             this.setState({ filterdUsers: searchEmployee });
-             // console.log(this.state.filterdUsers)
+            // console.log(event.target.value)
+            this.setState({ sorted: true })
+            this.setState({ search: event.target.value });
+            this.setState({ filterdUsers: searchEmployee });
+            // console.log(this.state.filterdUsers)
     };
 
 
@@ -51,6 +42,8 @@ class Search extends Component {
         } else {
             this.setState({ order: "descend"})
         }
+
+        
         let { users, order } = this.state;
 
         function compare( a, b ) {
@@ -74,14 +67,12 @@ class Search extends Component {
               return 0;
 
             }
-
+        
         }
         const filtered = users.sort( compare );
-
+                        
         console.log(filtered)
-        
     }
-
 
     searchEmployee = () => {
         if (this.state.sorted) {
@@ -99,7 +90,6 @@ class Search extends Component {
             </div>
         }
 
-       
         else if(this.state.loading === false) {
             return <div>
                 {this.state.users.map(users=> (
@@ -114,9 +104,8 @@ class Search extends Component {
             ))}
         </div>
 
-                  
         }
-
+        
 
     }
 
@@ -131,16 +120,16 @@ class Search extends Component {
 
     render() {
         return ( 
-
+                
                 <div>
                     <SearchBox handleInput={this.handleInputChange}/>
                     <Title click={this.handleSort}/>
                     {this.searchEmployee()}
                 </div>    
-                
-
+                 
 
         )
     }
 }
+
 export default Search;
