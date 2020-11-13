@@ -6,7 +6,8 @@ class Search extends Component {
     state = {
         users: [{}],
         order: "descend",
-        filterdUsers: [{}]
+        filterdUsers: [{}],
+        loading: true
     };
 
     componentDidMount() {

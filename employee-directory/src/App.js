@@ -1,6 +1,6 @@
 import React from 'react';
 import Navbar from "./components/Navbar";
-import Titles from "./components/Titles";
+import Titles from "./components/Title";
 import Search from "./components/Search";
 
 
