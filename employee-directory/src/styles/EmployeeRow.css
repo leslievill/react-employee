@@ -1,0 +1,4 @@
+.userImg, .userName, .userPhone, .userEmail, .userDob {
+    text-align: center;
+    padding: 10px;
+} 
