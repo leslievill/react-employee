@@ -7,7 +7,11 @@ import Title from "./Title";
 
 class Search extends Component {
     state = {
-
+        users: [{}],
+        order: "descend",
+        filterdUsers: [{}],
+        loading: true,
+        search: "",
         sorted: false
     };
 
@@ -22,8 +26,6 @@ class Search extends Component {
     // }
 
     handleInputChange = event => {
-        // console.log(event.target.value)
-        // this.setState({ filterdUsers: event.target.value });
         let { users, search } = this.state;
         let searchEmployee = users.filter(sorted => {
             return (
@@ -34,11 +36,7 @@ class Search extends Component {
                 sorted.dob.date.toLowerCase().includes(search.toLowerCase()) 
             )
         })
-        // this.setState({filteredUsers: searchEmployee})
-        // console.log(event.target.value)
-        // this.setState({ search: event.target.value });
-        // this.setState({ filterdUsers: searchEmployee });
-        // console.log(this.state.filterdUsers)
+       
              // console.log(event.target.value)
              this.setState({ sorted: true })
              this.setState({ search: event.target.value });
@@ -46,24 +44,42 @@ class Search extends Component {
              // console.log(this.state.filterdUsers)
     };
 
-    // startSort = event => {
-    //     this.setState({ search: event.target.value }, () => {
-    //       this.sortEmp();
-    //       this.setState({ sorted: true });
-    //     });
-    //   };
 
     handleSort = () => {
+        if (this.state.order === "descend") {
+            this.setState({ order: "asc"})
+        } else {
+            this.setState({ order: "descend"})
+        }
         let { users, order } = this.state;
-        console.log("trying to sort")
-        users.sort(function(a, b) {
-            // var textA = a.name.first.toLowerCase();
-            // var textB = b.name.first.toLowerCase();
-            const isReversed = (order === "asc") ? 1 : -1 
-            return console.log(isReversed * a.name.first.localeCompare(b.name.first))
-                // (textA < textB) ? -1 : (textA > textB) ? 1 : 0
 
-        })
+        function compare( a, b ) {
+            if (order === "asc") {
+                if ( a.name.first < b.name.first )
+                {    return -1;  
+              }  
+              if ( a.name.last > b.name.last )
+              {    
+                  return 1;  
+              }  
+              return 0;
+            } else {
+                if ( a.name.first > b.name.first )
+                {    return -1;  
+              }  
+              if ( a.name.last < b.name.last )
+              {    
+                  return 1;  
+              }  
+              return 0;
+
+            }
+
+        }
+        const filtered = users.sort( compare );
+
+        console.log(filtered)
+        
     }
 
 
